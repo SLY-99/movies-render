@@ -16,7 +16,7 @@ for (let i = 0; i < cutMovies.length; i++) {
     let newTitle = document.createElement("h5");
     let newDateText = document.createElement("p");
     let newRateText = document.createElement("p");
-    let newBtnTrailer = document.createElement("button");
+    let newBtnTrailer = document.createElement("a");
     let newBtnInfo = document.createElement("button");
     let newBtnBookmarks = document.createElement("button");
     
@@ -42,6 +42,7 @@ for (let i = 0; i < cutMovies.length; i++) {
 
     newBtnWrapper.setAttribute("class" , "pb-3");
     newBtnTrailer.setAttribute("class" , "btn btn-outline-primary btn-sm me-3");
+    newBtnTrailer.setAttribute("href" , `https://www.youtube.com/watch?v=${cutMovies[i].ytid}`);
     newBtnTrailer.textContent = "Watch trailer";
     newBtnInfo.setAttribute("class" , "btn btn-outline-info btn-sm me-3");
     newBtnInfo.textContent = "More info";
