@@ -18,20 +18,22 @@
             <div class="container">
                 <div class="row mt-4">
                     <div class="col-md-4">
-                        <input class="form-control" type="text" placeholder="Search">
-                        <input class="form-control mt-3" type="text" placeholder="5">
-                        <select class="form-select mt-3" name="" id="">
-                            <option value="all">All</option>
-                            <option value="fantasy">Fantasy</option>
-                            <option value="horror">Horror</option>
-                            <option value="comedy">Comedy</option>
-                            <option value="dramma">Dramma</option>
-                        </select>
-                        <select class="form-select mt-3" name="" id="">
-                            <option value="rating-high">Rating (high to low)</option>
-                            <option value="rating-low">Rating (low to high)</option>
-                        </select>
-                        <button type="button" class="btn btn-primary w-100 mt-3">Search</button>
+                        <form id="form">
+                            <input class="form-control" type="text" placeholder="Search">
+                            <input id="rating" class="form-control mt-3" type="text" placeholder="Enter Rating">
+                            <select class="form-select mt-3" name="" id="">
+                                <option value="all">All</option>
+                                <option value="fantasy">Fantasy</option>
+                                <option value="horror">Horror</option>
+                                <option value="comedy">Comedy</option>
+                                <option value="dramma">Dramma</option>
+                            </select>
+                            <select class="form-select mt-3" name="" id="">
+                                <option value="rating-high">Rating (high to low)</option>
+                                <option value="rating-low">Rating (low to high)</option>
+                            </select>
+                            <button id="btn" type="submit" class="btn btn-primary w-100 mt-3">Search</button>
+                        </form>
                         <h3 class="h3 mt-4">Bookmarked movies</h3>
                         <ul class="list-group pb-5">
                             <li class="list-group-item">
@@ -49,12 +51,12 @@
                         </ul>
                     </div>
                     <div class="col-md-8">
-                        <h5 class="h5">Search results: 39</h5>
+                        <h5 id="h5" class="h5">Search results: 39</h5>
                         <div class="alert alert-info" role="alert">
                             Use the form on the left to search for a movie
                         </div>
                         <div id="wrapper" class="wrapper d-flex flex-wrap">
-                            <div class="card me-3 mb-3" style="width: 22rem;">
+                            <!-- <div class="card me-3 mb-3" style="width: 22rem;">
                                 <img src="./images/85019.jpg" class="card-img-top" alt="Avengers">
                                 <div class="card-body">
                                     <h5 class="card-title fw-bolder text-danger">Avengers: Infinity War</h5>
@@ -65,7 +67,7 @@
                                     <div class="d-flex">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 100.789 95.857">
                                             <path id="star" d="M50.4,1.318,65.967,32.872l34.823,5.061-25.2,24.56L81.54,97.175,50.4,80.8,19.25,97.175,25.2,62.493,0,37.933l34.823-5.061Z" transform="translate(0 -1.318)" fill="#efce4a"/>
-                                          </svg>
+                                        </svg>
                                         <p class="ms-2 fw-bolder">8.7</p>
                                     </div>
                                     <div class="pb-3">
@@ -86,7 +88,7 @@
                                     <div class="d-flex">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 100.789 95.857">
                                             <path id="star" d="M50.4,1.318,65.967,32.872l34.823,5.061-25.2,24.56L81.54,97.175,50.4,80.8,19.25,97.175,25.2,62.493,0,37.933l34.823-5.061Z" transform="translate(0 -1.318)" fill="#efce4a"/>
-                                          </svg>
+                                        </svg>
                                         <p class="ms-2 fw-bolder">8.1</p>
                                     </div>
                                     <div class="pb-3">
@@ -95,7 +97,7 @@
                                         <button type="button" class="btn btn-outline-success btn-sm">Bookmarks</button>
                                     </div>
                                 </div>
-                            </div>
+                            </div> -->
                         </div>
                         <div class="d-flex justify-content-center mt-4">
                             <div class="btn-group me-2" role="group" aria-label="First group">
@@ -103,7 +105,7 @@
                                 <button type="button" class="btn btn-outline-primary">2</button>
                                 <button type="button" class="btn btn-outline-primary">3</button>
                                 <button type="button" class="btn btn-outline-primary">4</button>
-                              </div>
+                            </div>
                         </div>
                     </div>
                 </div>
