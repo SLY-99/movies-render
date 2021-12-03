@@ -1,10 +1,12 @@
-const copyMovies = movies;
+const copyMovies = movies.slice(0,20);
 
 
-let cutMovies = copyMovies.slice(0,20);
 const elWrapper = document.querySelector("#wrapper");
 const elForm = document.querySelector("#form");
 const elRating = document.querySelector("#rating");
+const elSelectTitle = document.querySelector("#select-title");
+const elSelectRating = document.querySelector("#select-rating");
+const elSearchInput = document.querySelector("#search_input");
 const elBtn = document.querySelector("#btn");
 const elTitle = document.querySelector("#h5");
 
@@ -56,7 +58,6 @@ function renderMovies(filmsArr , wrapper){
         newBtnBookmarks.textContent = "Bookmarks";
         
         
-        
         wrapper.appendChild(newCard);
         
         newCard.appendChild(newImg);
@@ -74,36 +75,75 @@ function renderMovies(filmsArr , wrapper){
         newBtnWrapper.appendChild(newBtnTrailer);
         newBtnWrapper.appendChild(newBtnInfo);
         newBtnWrapper.appendChild(newBtnBookmarks);
-
+        
     });
     elTitle.textContent = `Search results: ${filmsArr.length}`;
 }
-
 renderMovies(cutMovies , elWrapper);
 
 
-elForm.addEventListener("submit" , (e) => {
-    e.preventDefault();
-    elWrapper.innerHTML = null;
-    
-    let ratingValue =Number(elRating.value.trim());
+// Rate filter function
 
+function filterByRate(Arrfilms) {
+    let ratingValue =Number(elRating.value.trim());
+    
     if(ratingValue == "" || isNaN(ratingValue)){
-        alert("Enter a number")
+        renderMovies(cutMovies , elWrapper);
     }else{
-        
-        let filteredRating = cutMovies.filter((rate) => {
+        let filteredRating = Arrfilms.filter((rate) => {
             if (rate.imdb_rating >= ratingValue && rate.imdb_rating < ratingValue+1) {
                 return true;
             }
         });
         renderMovies(filteredRating , elWrapper);
     }
+}
+
+// Title sort function
+
+function sortTitle(arrTitle , select) {
+
+    if(select.value == "a-z"){
+        arrTitle.sort((a,b) => a.Title > b.Title ? 1 : -1)
+    }else if(select.value == "z-a"){
+        arrTitle.sort((b,a) => a.Title > b.Title ? 1 : -1)
+    }else{
+        return false;
+    }
+}
+
+// Rating sort function
+
+function sortRating(arrRating , select) {
+
+    if(select.value == "rating-low"){
+        arrRating.sort((a,b) => a.imdb_rating-b.imdb_rating)
+        renderMovies(arrRating , elWrapper);
+    }else if(select.value == "rating-high"){
+        arrRating.sort((a,b) => b.imdb_rating-a.imdb_rating)
+        renderMovies(arrRating , elWrapper);
+    }else{
+        return false;
+    }
+}
+
+// Search movie function
+
+
+
+
+
+
+elForm.addEventListener("submit" , (e) => {
+    e.preventDefault();
+    elWrapper.innerHTML = null;
+    
+    filterByRate(cutMovies);
+    sortTitle(cutMovies , elSelectTitle);     
+    sortRating(cutMovies , elSelectRating);
     
     elRating.value = null;
+    elSelectTitle.value = "default";
 })
-
-
-// console.log(elWrapper);
 
 
