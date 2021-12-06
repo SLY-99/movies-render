@@ -1,6 +1,3 @@
-const copyMovies = movies.slice(0,20);
-
-
 const elWrapper = document.querySelector("#wrapper");
 const elForm = document.querySelector("#form");
 const elRating = document.querySelector("#rating");
@@ -9,6 +6,9 @@ const elSelectRating = document.querySelector("#select-rating");
 const elSearchInput = document.querySelector("#search_input");
 const elBtn = document.querySelector("#btn");
 const elTitle = document.querySelector("#h5");
+
+
+const copyMovies = movies.slice(0,50);
 
 
 function renderMovies(filmsArr , wrapper){
@@ -79,7 +79,7 @@ function renderMovies(filmsArr , wrapper){
     });
     elTitle.textContent = `Search results: ${filmsArr.length}`;
 }
-renderMovies(cutMovies , elWrapper);
+renderMovies(copyMovies , elWrapper);
 
 
 // Rate filter function
@@ -130,6 +130,28 @@ function sortRating(arrRating , select) {
 // Search movie function
 
 
+elSearchInput.addEventListener("keyup" , (evt) => {
+    evt.preventDefault();
+    let searchedMovies = []
+
+    let searchInput = elSearchInput.value.trim()
+
+    let searchKey = new RegExp(searchInput, "gi");
+    copyMovies.forEach((movieItem) => {
+        let searchResult = movieItem.Title.match(searchKey)
+        if (searchResult) {
+            searchedMovies.push(movieItem)
+        }
+    })
+
+    if (searchedMovies.length > 0) {
+        elWrapper.innerHTML = null
+        renderMovies(searchedMovies , elWrapper);
+    }else {
+        elWrapper.innerHTML = "Kino yo'q"
+        elTitle.textContent = "0"
+    }  
+})
 
 
 
@@ -138,9 +160,9 @@ elForm.addEventListener("submit" , (e) => {
     e.preventDefault();
     elWrapper.innerHTML = null;
     
-    filterByRate(cutMovies);
-    sortTitle(cutMovies , elSelectTitle);     
-    sortRating(cutMovies , elSelectRating);
+    filterByRate(copyMovies);
+    sortTitle(copyMovies , elSelectTitle);     
+    sortRating(copyMovies , elSelectRating);
     
     elRating.value = null;
     elSelectTitle.value = "default";
